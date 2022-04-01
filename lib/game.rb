@@ -1,11 +1,10 @@
 require_relative 'board.rb'
 require_relative 'player.rb'
+require_relative 'display.rb'
 
 class Game
-attr_accessor :board
-attr_accessor :player_1
-attr_accessor :player_2
-attr_accessor :current_player
+attr_accessor :board, :player_1, :player_2, :current_player
+include Display
 
   def initialize
     @board=Board.new
@@ -15,20 +14,18 @@ attr_accessor :current_player
   end
 
   def determine_players
-    puts "Who is player 1? (enter your name)"
+    player_1_selection_prompt
     name=gets.chomp
-    puts "Which letter would you like to use as your token? (enter a letter)"
+    token_selection_prompt
     token=gets.chomp
     @player_1 = Player.new(name, token)
     
-    
-    
-    puts "Who is player 2? (enter your name)"
+    player_2_selection_prompt
     name=gets.chomp
-    puts "Which letter would you like to use as your token? (enter a letter)"
+    token_selection_prompt
     token=gets.chomp
     until available_token?(token)
-        puts "That letter has already been chosen. Please pick again. "
+        choose_another_token_prompt
         token=gets.chomp
     end
     @player_2 = Player.new(name, token)
@@ -38,16 +35,16 @@ attr_accessor :current_player
     if choice==@player_1.token
         false
     else
-        true
+        true 
     end
   end
 
 
   def switch_player
     if @current_player==@player_1
-        current_player=@player_2
+      @current_player=@player_2
     else
-        current_player=@player_1
+      @current_player=@player_1
     end
   end
 
@@ -59,11 +56,9 @@ attr_accessor :current_player
 
   end
 
-  def play_game
-    @board.display
-  end
+  
 end
 
 game=Game.new
 
-game.play_game
+game.determine_players
