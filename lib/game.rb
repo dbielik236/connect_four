@@ -27,8 +27,21 @@ attr_accessor :current_player
     name=gets.chomp
     puts "Which letter would you like to use as your token? (enter a letter)"
     token=gets.chomp
+    until available_token?(token)
+        puts "That letter has already been chosen. Please pick again. "
+        token=gets.chomp
+    end
     @player_2 = Player.new(name, token)
   end
+
+  def available_token?(choice)
+    if choice==@player_1.token
+        false
+    else
+        true
+    end
+  end
+
 
   def switch_player
     if @current_player==@player_1
@@ -48,3 +61,6 @@ attr_accessor :current_player
 end
 
 
+game=Game.new
+
+game.determine_players
