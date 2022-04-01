@@ -53,14 +53,17 @@ attr_accessor :current_player
 
   def take_turns
     switch_player
-    puts @board
     puts "Make your selction by entering a row number."
     move = gets.chomp
     #this is unfinished - need to work on finishing board class first"
+
+  end
+
+  def play_game
+    @board.display
   end
 end
 
-
 game=Game.new
 
-game.determine_players
+game.play_game
