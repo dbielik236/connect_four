@@ -39,7 +39,6 @@ include Display
     end
   end
 
-
   def switch_player
     if @current_player==@player_1
       @current_player=@player_2
@@ -48,12 +47,21 @@ include Display
     end
   end
 
-  def take_turns
-    switch_player
-    puts "Make your selction by entering a row number."
-    move = gets.chomp
-    #this is unfinished - need to work on finishing board class first"
+  
 
+
+  def take_turns
+    10.times do
+    switch_player
+    @board.display
+    row_selection_prompt
+    move = gets.chomp
+    until @board.legal_move?(move.to_i)
+        illegal_move_prompt
+        move = gets.chomp
+    end
+    @board.replace_token(move.to_i, @current_player.token)
+    end
   end
 
   
@@ -62,3 +70,4 @@ end
 game=Game.new
 
 game.determine_players
+game.take_turns

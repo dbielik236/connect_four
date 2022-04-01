@@ -9,7 +9,7 @@ class Board
           [" ", " ", " ", " ", " ", " ", " "],
           [" ", " ", " ", " ", " ", " ", " "],
           [" ", " ", " ", " ", " ", " ", " "],
-          [" ", " ", " ", "b", " ", " ", " "]
+          [" ", " ", " ", " ", " ", " ", " "]
       ]
     
     end
@@ -28,5 +28,22 @@ class Board
     def legal_move?(num)
       num >= 1 && num <=7 && @grid[5][num-1]==" "
     end
+
+    def replace_token(col, token)
+      if @grid[0][col-1]==" "
+        @grid[0][col-1]=token
+      elsif @grid[1][col-1]==" "
+        @grid[1][col-1]=token
+      elsif @grid[2][col-1]==" "
+        @grid[2][col-1]=token
+      elsif @grid[3][col-1]==" "
+        @grid[3][col-1]=token
+      elsif @grid[4][col-1]==" "
+        @grid[4][col-1]=token
+      else
+        @grid[5][col-1]=token
+      end
+    end
+
 end
 
