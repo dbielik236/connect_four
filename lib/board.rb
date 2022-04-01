@@ -45,5 +45,19 @@ class Board
       end
     end
 
+    def board_full?
+        @grid.each do |row|
+            row.each do |value|
+                if value==" "
+                    return false
+                end
+            end
+        end
+      end
+
+    def winner?
+
+    end
+
 end
 

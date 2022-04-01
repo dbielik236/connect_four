@@ -47,25 +47,25 @@ include Display
     end
   end
 
-  
-
 
   def take_turns
-    10.times do
-    switch_player
-    @board.display
-    row_selection_prompt
-    move = gets.chomp
-    until @board.legal_move?(move.to_i)
-        illegal_move_prompt
+    until @board.board_full?
+        switch_player
+        @board.display
+        row_selection_prompt
         move = gets.chomp
-    end
-    @board.replace_token(move.to_i, @current_player.token)
+        until @board.legal_move?(move.to_i)
+            illegal_move_prompt
+            move = gets.chomp
+        end
+        @board.replace_token(move.to_i, @current_player.token)
     end
   end
 
   
 end
+    
+
 
 game=Game.new
 
