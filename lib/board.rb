@@ -71,6 +71,36 @@ class Board
     result
   end
 
+  def column_winner?
+    result = false
+    queue = []
+    current_column = 0
+    while current_column <= 6
+      @grid.each do |row|
+        queue << row[current_column]
+      end
+      counter = 1
+      index = 1
+      until counter == 4 || index == 6
+        if queue[index - 1] != ' ' && queue[index] == queue[index - 1]
+          counter += 1
+        else
+          counter = 1
+        end
+        index += 1
+      end
+      if counter == 4
+        result = true
+        break
+      end
+      break if result == true
+
+      current_column += 1
+      queue = []
+    end
+    result
+  end
+
   def winner?
   end
 end

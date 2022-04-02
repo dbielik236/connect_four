@@ -53,7 +53,7 @@ class Game
   end
 
   def take_turns
-    until @board.board_full? || @board.row_winner?
+    until @board.board_full? || @board.row_winner? || @board.column_winner?
       switch_player
       @board.display
       row_selection_prompt
