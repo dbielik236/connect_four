@@ -54,6 +54,23 @@ class Board
     end
   end
 
+  def row_winner?
+    result = false
+    @grid.each do |row|
+      next if row[3] == ' '
+      return result if row[2] != row[3] && row[4] != row[3]
+
+      if row[2] == row[3] && row[4] != row[3]
+        return result = true if row[0] == row[3] && row[1] == row[3]
+      elsif row[2] != row[3] && row[4] == row[3]
+        return result = true if row[5] == row[3] && row[6] == row[3]
+      elsif row[2] == row[3] && row[4] == row[3]
+        return result = true if row[1] == row[3] || row[5] == row[3]
+      end
+    end
+    result
+  end
+
   def winner?
   end
 end

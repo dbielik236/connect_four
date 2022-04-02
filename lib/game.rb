@@ -53,7 +53,7 @@ class Game
   end
 
   def take_turns
-    until @board.board_full?
+    until @board.board_full? || @board.row_winner?
       switch_player
       @board.display
       row_selection_prompt
@@ -67,7 +67,8 @@ class Game
   end
 end
 
-game=Game.new
+game = Game.new
 
 game.determine_players
 game.take_turns
+
