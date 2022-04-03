@@ -20,18 +20,26 @@ class Game
   def determine_players
     # player 1 selection
     player_1_selection_prompt
-    name = gets.chomp
+    name = gets.chomp.strip
     token_selection_prompt
-    token = gets.chomp
+    token = gets.chomp.strip
+    until one_letter?(token)
+      illegal_token_prompt
+      token = gets.chomp.strip
+    end
     @player1 = Player.new(name, token)
     # player 2 selection
     player_2_selection_prompt
-    name = gets.chomp
+    name = gets.chomp.strip
     token_selection_prompt
-    token = gets.chomp
+    token = gets.chomp.strip
     until available_token?(token)
       choose_another_token_prompt
       token = gets.chomp
+    end
+    until one_letter?(token)
+      illegal_token_prompt
+      token = gets.chomp.strip
     end
     @player2 = Player.new(name, token)
   end
@@ -44,6 +52,10 @@ class Game
     end
   end
 
+  def one_letter?(choice)
+    return true if choice.length == 1
+  end
+
   def switch_player
     if @current_player == @player1
       @current_player = @player2
@@ -53,7 +65,11 @@ class Game
   end
 
   def take_turns
-    until @board.board_full? || @board.row_winner? || @board.column_winner?
+    until @board.board_full? ||
+          @board.row_winner? ||
+          @board.column_winner? ||
+          @board.diagonal_upleft_winner? ||
+          @board.diagonal_upright_winner?
       switch_player
       @board.display
       row_selection_prompt
@@ -65,10 +81,16 @@ class Game
       @board.replace_token(move.to_i, @current_player.token)
     end
   end
+
+  def conclusion
+    @board.display
+    if @board.board_full?
+      tie_prompt
+    elsif @board.row_winner? ||
+          @board.column_winner? ||
+          @board.diagonal_upleft_winner? ||
+          @board.diagonal_upright_winner?
+      winner_prompt
+    end
+  end
 end
-
-game = Game.new
-
-game.determine_players
-game.take_turns
-

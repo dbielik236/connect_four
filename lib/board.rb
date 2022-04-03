@@ -6,7 +6,7 @@ class Board
 
   def initialize
     @grid = [
-      [' ', ' ', ' ', ' ', ' ', ' ', ' '], 
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
       [' ', ' ', ' ', ' ', ' ', ' ', ' '],
       [' ', ' ', ' ', ' ', ' ', ' ', ' '],
       [' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -17,6 +17,7 @@ class Board
 
   def display
     puts "
+         1   2   3   4   5   6   7
        |_#{grid[5][0]}_|_#{grid[5][1]}_|_#{grid[5][2]}_|_#{grid[5][3]}_|_#{grid[5][4]}_|_#{grid[5][5]}_|_#{grid[5][6]}_|
        |_#{grid[4][0]}_|_#{grid[4][1]}_|_#{grid[4][2]}_|_#{grid[4][3]}_|_#{grid[4][4]}_|_#{grid[4][5]}_|_#{grid[4][6]}_|
        |_#{grid[3][0]}_|_#{grid[3][1]}_|_#{grid[3][2]}_|_#{grid[3][3]}_|_#{grid[3][4]}_|_#{grid[3][5]}_|_#{grid[3][6]}_|
@@ -71,6 +72,8 @@ class Board
     result
   end
 
+
+
   def column_winner?
     result = false
     queue = []
@@ -101,6 +104,53 @@ class Board
     result
   end
 
-  def winner?
+  def diagonal_upright_winner?
+    result = false
+    possible_starters = [
+      [0, 0], [0, 1], [0, 2], [0, 3],
+      [1, 0], [1, 1], [1, 2], [1, 3],
+      [2, 0], [2, 1], [2, 2], [2, 3]
+    ]
+    possible_starters.each do |loc|
+      row, column = loc
+      counter = 1
+      3.times do
+        if @grid[row + 1][column + 1] == @grid[row][column] && @grid[row][column] != ' '
+          counter += 1
+        end
+        row += 1
+        column += 1
+      end
+      if counter == 4
+        result = true
+        break
+      end
+    end
+    result
+  end
+
+  def diagonal_upleft_winner?
+    result = false
+    possible_starters = [
+      [0, 3], [0, 4], [0, 5], [0, 6],
+      [1, 3], [1, 4], [1, 5], [1, 6],
+      [2, 3], [2, 4], [2, 5], [2, 6]
+    ]
+    possible_starters.each do |loc|
+      row, column = loc
+      counter = 1
+      3.times do
+        if @grid[row + 1][column - 1] == @grid[row][column] && @grid[row][column] != ' '
+          counter += 1
+        end
+        row += 1
+        column -= 1
+      end
+      if counter == 4
+        result = true
+        break
+      end
+    end
+    result
   end
 end

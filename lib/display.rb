@@ -26,4 +26,15 @@ module Display
     puts 'Not a playable row. Please choose again'
   end
 
+  def illegal_token_prompt
+    puts 'Don\'t get greedy! Just choose one letter for your token.'
+  end
+
+  def tie_prompt
+    puts 'Wow, you filled up the whole board! I guess it\'s a tie?'
+  end
+
+  def winner_prompt
+    puts "Congratulations #{@current_player}, you won!"
+  end
 end
