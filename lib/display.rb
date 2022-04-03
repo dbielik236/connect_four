@@ -2,6 +2,10 @@
 
 # contains all of the display prompts
 module Display
+  def welcome_prompt
+    puts 'Let\'s play CONNECT FOUR!'
+  end
+
   def player_1_selection_prompt
     puts 'Who is player 1? (enter your name)'
   end
@@ -35,6 +39,14 @@ module Display
   end
 
   def winner_prompt
-    puts "Congratulations #{@current_player}, you won!"
+    puts "Congratulations #{@current_player.name}, you won!"
+  end
+
+  def play_again_prompt
+    puts 'Would you like to play again? (y/n)'
+  end
+
+  def end_prompt
+    puts 'Thanks for playing!'
   end
 end
