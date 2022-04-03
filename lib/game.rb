@@ -35,7 +35,7 @@ class Game
     token = gets.chomp.strip
     until available_token?(token)
       choose_another_token_prompt
-      token = gets.chomp
+      token = gets.chomp.strip
     end
     until one_letter?(token)
       illegal_token_prompt

@@ -7,11 +7,11 @@ module Display
   end
 
   def player_1_selection_prompt
-    puts 'Who is player 1? (enter your name)'
+    puts "\nWho is player 1? (enter your name)"
   end
 
   def player_2_selection_prompt
-    puts 'Who is player 2? (enter your name)'
+    puts "\nWho is player 2? (enter your name)"
   end
 
   def token_selection_prompt
