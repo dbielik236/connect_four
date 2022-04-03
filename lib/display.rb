@@ -3,7 +3,7 @@
 # contains all of the display prompts
 module Display
   def welcome_prompt
-    puts 'Let\'s play CONNECT FOUR!'
+    puts "\nLet\'s play CONNECT FOUR!"
   end
 
   def player_1_selection_prompt
@@ -31,7 +31,7 @@ module Display
   end
 
   def illegal_token_prompt
-    puts 'Don\'t get greedy! Just choose one letter for your token.'
+    puts 'Don\'t be greedy! Just choose one letter for your token.'
   end
 
   def tie_prompt
