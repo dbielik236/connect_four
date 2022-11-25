@@ -8,4 +8,4 @@ Play it for yourself! https://replit.com/@dbielik236/connectfour#main.rb
 
 
 ## Reflection
-This was my first introduction to TDD and I still have a lot to learn. Although, I have a lot to learn in general, so I guess I'll add it to the list!
+This was my first introduction to TDD and I still have a lot to learn. I have a lot to learn in general, though, so I guess I'll add it to the list!
